@@ -1,21 +1,19 @@
 package com.example.lizhiqiang.bigoldlee.activity;
 
 import android.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.lizhiqiang.bigoldlee.R;
-import com.example.lizhiqiang.bigoldlee.base.layout.BaseActivity;
 import com.example.lizhiqiang.bigoldlee.fragment.FourFragment;
 import com.example.lizhiqiang.bigoldlee.fragment.MainFragment;
 import com.example.lizhiqiang.bigoldlee.fragment.ThreeFragment;
 import com.example.lizhiqiang.bigoldlee.fragment.TwoFragment;
+import com.lzq.commlibs.baselayout.BaseActivity_libs;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity_libs {
     private LinearLayout ly_one,ly_two,ly_three,ly_four;
     private TextView mTextView1,mTextView2,mTextView3,mTextView4,txt_topbar;
     private TextView mTextNum1,mTextNum2,mTextNum3,mTxetNum3;

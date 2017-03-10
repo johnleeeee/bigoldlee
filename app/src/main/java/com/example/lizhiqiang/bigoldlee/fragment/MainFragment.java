@@ -9,13 +9,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.lizhiqiang.bigoldlee.R;
-import com.example.lizhiqiang.bigoldlee.base.layout.BaseFragment;
+import com.lzq.commlibs.baselayout.BaseFragment_libs;
 
 /**
  * Created by GaoHW on 2017/3/10.
  */
 
-public class MainFragment extends BaseFragment {
+public class MainFragment extends BaseFragment_libs {
 
     private Button btn_one;
     private Button btn_two;

@@ -6,13 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.lizhiqiang.bigoldlee.R;
-import com.example.lizhiqiang.bigoldlee.base.layout.BaseFragment;
+import com.lzq.commlibs.baselayout.BaseFragment_libs;
 
 /**
  * Created by GaoHW on 2017/3/10.
  */
 
-public class TwoFragment extends BaseFragment{
+public class TwoFragment extends BaseFragment_libs{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
