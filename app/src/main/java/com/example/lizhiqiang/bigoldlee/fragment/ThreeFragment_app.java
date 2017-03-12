@@ -12,12 +12,12 @@ import com.lzq.commlibs.baselayout.BaseFragment_libs;
  * Created by GaoHW on 2017/3/10.
  */
 
-public class FourFragment extends BaseFragment_libs{
+public class ThreeFragment_app extends BaseFragment_libs{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_four,container,false);
+        View view = inflater.inflate(R.layout.fragment_three_app,container,false);
 
         return view;
     }

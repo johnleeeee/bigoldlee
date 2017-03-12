@@ -9,21 +9,21 @@ import com.example.lizhiqiang.bigoldlee.R;
 import com.lzq.commlibs.baselayout.BaseFragment_libs;
 
 /**
- * Created by GaoHW on 2017/3/10.
+ * Created by lizhiqiang on 2017/3/12.
  */
 
-public class ThreeFragment extends BaseFragment_libs{
+public class TwoFragment_app extends BaseFragment_libs{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_three,container,false);
+        View view = inflater.inflate(R.layout.fragment_two_app,container,false);
 
         return view;
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(View v) {
 
     }
 }

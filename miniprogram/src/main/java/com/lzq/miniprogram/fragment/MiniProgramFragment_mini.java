@@ -1,21 +1,21 @@
-package com.example.lizhiqiang.bigoldlee.fragment;
+package com.lzq.miniprogram.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.example.lizhiqiang.bigoldlee.R;
 import com.lzq.commlibs.baselayout.BaseFragment_libs;
+import com.lzq.miniprogram.R;
 
 /**
  * Created by GaoHW on 2017/3/10.
  */
 
-public class MainFragment extends BaseFragment_libs {
+public class MiniProgramFragment_mini extends BaseFragment_libs{
+
+
 
     private Button btn_one;
     private Button btn_two;
@@ -23,7 +23,7 @@ public class MainFragment extends BaseFragment_libs {
     private Button btn_four;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main,container,false);
+        View view = inflater.inflate(R.layout.fragment_main_mini,container,false);
         btn_one = (Button)view.findViewById(R.id.btn_one);
         btn_two = (Button)view.findViewById(R.id.btn_two);
         btn_three = (Button)view.findViewById(R.id.btn_three);
@@ -38,26 +38,28 @@ public class MainFragment extends BaseFragment_libs {
 
     @Override
     public void onClick(View view) {
-        switch(view.getId()){
+        /*switch(view.getId()){
             case R.id.btn_one:
-                TextView mTextViewDeal = (TextView)getActivity().findViewById(R.id.tab_menu_deal_num);
+                *//*TextView mTextViewDeal = (TextView)getActivity().findViewById(R.id.tab_menu_deal_num);
                 mTextViewDeal.setText("11");
-                mTextViewDeal.setVisibility(View.VISIBLE);
+                mTextViewDeal.setVisibility(View.VISIBLE);*//*
                 break;
             case R.id.btn_two:
-                TextView mTextViewPoi = (TextView)getActivity().findViewById(R.id.tab_menu_poi_num);
+                *//*TextView mTextViewPoi = (TextView)getActivity().findViewById(R.id.tab_menu_poi_num);
                 mTextViewPoi.setText("99");
-                mTextViewPoi.setVisibility(View.VISIBLE);
+                mTextViewPoi.setVisibility(View.VISIBLE);*//*
                 break;
             case R.id.btn_three:
-                TextView mTextViewMore = (TextView)getActivity().findViewById(R.id.tab_menu_more_num);
+                *//*TextView mTextViewMore = (TextView)getActivity().findViewById(R.id.tab_menu_more_num);
                 mTextViewMore.setText("999+");
-                mTextViewMore.setVisibility(View.VISIBLE);
+                mTextViewMore.setVisibility(View.VISIBLE);*//*
                 break;
             case R.id.btn_four:
-                /*ImageView mImageView = (ImageView) getActivity ().findViewById(R.id.tab_menu_setting_partner);
-                mImageView.setVisibility(View.VISIBLE);*/
+                *//*ImageView mImageView = (ImageView) getActivity ().findViewById(R.id.tab_menu_setting_partner);
+                mImageView.setVisibility(View.VISIBLE);*//*
                 break;
-        }
+            default:
+                break;
+        }*/
     }
 }

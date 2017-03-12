@@ -1,19 +1,20 @@
 package com.example.lizhiqiang.bigoldlee.activity;
 
-import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.lizhiqiang.bigoldlee.R;
-import com.example.lizhiqiang.bigoldlee.fragment.FourFragment;
-import com.example.lizhiqiang.bigoldlee.fragment.MainFragment;
-import com.example.lizhiqiang.bigoldlee.fragment.ThreeFragment;
-import com.example.lizhiqiang.bigoldlee.fragment.TwoFragment;
+import com.example.lizhiqiang.bigoldlee.fragment.FourFragment_app;
+import com.example.lizhiqiang.bigoldlee.fragment.MainFragment_app;
+import com.example.lizhiqiang.bigoldlee.fragment.ThreeFragment_app;
+import com.example.lizhiqiang.bigoldlee.fragment.TwoFragment_app;
 import com.lzq.commlibs.baselayout.BaseActivity_libs;
 
-public class MainActivity extends BaseActivity_libs {
+public class MainActivity_app extends BaseActivity_libs {
     private LinearLayout ly_one,ly_two,ly_three,ly_four;
     private TextView mTextView1,mTextView2,mTextView3,mTextView4,txt_topbar;
     private TextView mTextNum1,mTextNum2,mTextNum3,mTxetNum3;
@@ -22,13 +23,14 @@ public class MainActivity extends BaseActivity_libs {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_app);
         initView();
         initListener();
         initData();
+
         ly_one.performClick();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        MainFragment fg1 = new MainFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        MainFragment_app fg1 = new MainFragment_app();
         transaction.add(R.id.fragment_container,fg1);
         transaction.commit();
     }
@@ -67,32 +69,32 @@ public class MainActivity extends BaseActivity_libs {
 
     @Override
     public void onClick(View view) {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch (view.getId()) {
             case R.id.ly_tab_menu_deal:
                 txt_topbar.setText("主界面");
-                transaction.replace(R.id.fragment_container, new MainFragment()).commit();
+                transaction.replace(R.id.fragment_container, new MainFragment_app()).commit();
                 setSelected();
                 mTextView1.setSelected(true);
                 mTextNum1.setVisibility(View.INVISIBLE);
                 break;
             case R.id.ly_tab_menu_poi:
                 txt_topbar.setText("第二个");
-                transaction.replace(R.id.fragment_container, new TwoFragment()).commit();
+                transaction.replace(R.id.fragment_container, new TwoFragment_app()).commit();
                 setSelected();
                 mTextView2.setSelected(true);
                 mTextNum2.setVisibility(View.INVISIBLE);
                 break;
             case R.id.ly_tab_menu_more:
                 txt_topbar.setText("第三个");
-                transaction.replace(R.id.fragment_container, new ThreeFragment()).commit();
+                transaction.replace(R.id.fragment_container, new ThreeFragment_app()).commit();
                 setSelected();
                 mTextView3.setSelected(true);
                 mTextNum3.setVisibility(View.INVISIBLE);
                 break;
             case R.id.ly_tab_menu_user:
                 txt_topbar.setText("第四个");
-                transaction.replace(R.id.fragment_container, new FourFragment()).commit();
+                transaction.replace(R.id.fragment_container, new FourFragment_app()).commit();
                 setSelected();
                 mTextView4.setSelected(true);
                 //mImageView.setVisibility(View.INVISIBLE);
