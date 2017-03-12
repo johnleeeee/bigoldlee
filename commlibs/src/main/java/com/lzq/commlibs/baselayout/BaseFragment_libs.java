@@ -25,4 +25,8 @@ public abstract class BaseFragment_libs extends Fragment implements View.OnClick
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
+
+    protected abstract void initView(View view);
+    protected abstract void initListener();
+    protected abstract void initData();
 }

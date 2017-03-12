@@ -28,6 +28,21 @@ public class MainFragment_app extends BaseFragment_libs {
     }
 
     @Override
+    protected void initView(View view) {
+
+    }
+
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
 

@@ -8,6 +8,11 @@ import android.widget.Button;
 
 import com.lzq.commlibs.baselayout.BaseFragment_libs;
 import com.lzq.miniprogram.R;
+import com.lzq.miniprogram.draggrid.ChannelItem;
+import com.lzq.miniprogram.draggrid.DragAdapter;
+import com.lzq.miniprogram.draggrid.DragGrid;
+
+import java.util.ArrayList;
 
 /**
  * Created by GaoHW on 2017/3/10.
@@ -15,51 +20,52 @@ import com.lzq.miniprogram.R;
 
 public class MiniProgramFragment_mini extends BaseFragment_libs{
 
+    private DragGrid dragGrid;
 
-
-    private Button btn_one;
-    private Button btn_two;
-    private Button btn_three;
-    private Button btn_four;
+    private int[] imgs = { R.mipmap.app_transfer, R.mipmap.app_fund,
+            R.mipmap.app_phonecharge, R.mipmap.app_creditcard,
+            R.mipmap.app_movie, R.mipmap.app_lottery,
+            R.mipmap.app_facepay, R.mipmap.app_close, R.mipmap.app_plane };
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_mini,container,false);
-        btn_one = (Button)view.findViewById(R.id.btn_one);
-        btn_two = (Button)view.findViewById(R.id.btn_two);
-        btn_three = (Button)view.findViewById(R.id.btn_three);
-        btn_four = (Button)view.findViewById(R.id.btn_four);
+        dragGrid = (DragGrid) view.findViewById(R.id.userGridView);
+        ArrayList<ChannelItem> dragLists = new ArrayList<ChannelItem>();
+        for (int i = 0; i < 9; i++) {
+            ChannelItem item = new ChannelItem(i + 1, "item" + (i + 1),imgs[i]);
 
-        btn_one.setOnClickListener(this);
-        btn_two.setOnClickListener(this);
-        btn_three.setOnClickListener(this);
-        btn_four.setOnClickListener(this);
+            if (i == 8)
+                item.setName("其他");
+            dragLists.add(item);
+        }
+        dragGrid.setAdapter(new DragAdapter(mActivity, dragLists));
         return view;
     }
 
     @Override
+    protected void initView(View view) {
+
+    }
+
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    public void onDestroy() {
+        // TODO Auto-generated method stub
+        super.onDestroy();
+        DragAdapter.selectedPos = -1;
+    }
+
+    @Override
     public void onClick(View view) {
-        /*switch(view.getId()){
-            case R.id.btn_one:
-                *//*TextView mTextViewDeal = (TextView)getActivity().findViewById(R.id.tab_menu_deal_num);
-                mTextViewDeal.setText("11");
-                mTextViewDeal.setVisibility(View.VISIBLE);*//*
-                break;
-            case R.id.btn_two:
-                *//*TextView mTextViewPoi = (TextView)getActivity().findViewById(R.id.tab_menu_poi_num);
-                mTextViewPoi.setText("99");
-                mTextViewPoi.setVisibility(View.VISIBLE);*//*
-                break;
-            case R.id.btn_three:
-                *//*TextView mTextViewMore = (TextView)getActivity().findViewById(R.id.tab_menu_more_num);
-                mTextViewMore.setText("999+");
-                mTextViewMore.setVisibility(View.VISIBLE);*//*
-                break;
-            case R.id.btn_four:
-                *//*ImageView mImageView = (ImageView) getActivity ().findViewById(R.id.tab_menu_setting_partner);
-                mImageView.setVisibility(View.VISIBLE);*//*
-                break;
-            default:
-                break;
-        }*/
+
     }
 }

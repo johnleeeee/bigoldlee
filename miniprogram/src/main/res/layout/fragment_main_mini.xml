@@ -2,35 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/text_white"
-    android:padding="5dp">
-    <Button
-        android:id="@+id/btn_one"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="显示第一个消息"/>
+    android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/btn_two"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="第二个显示信息"/>
 
-    <Button
-        android:id="@+id/btn_three"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="第三个显示信息"/>
+        android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/btn_four"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="第四个显示信息"/>
+        <com.lzq.miniprogram.draggrid.DragGrid
+            android:id="@+id/userGridView"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:listSelector="@android:color/transparent"
+            android:numColumns="4"
+            android:scrollbars="vertical"
+            android:stretchMode="columnWidth" />
+
+
+    </LinearLayout>
 
 </LinearLayout>
