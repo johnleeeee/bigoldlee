@@ -21,7 +21,7 @@ public class MainActivity_app extends BaseActivity_libs {
     private LinearLayout ly_one,ly_two,ly_three,ly_four;
     private TextView mTextView1,mTextView2,mTextView3,mTextView4,txt_topbar;
     private TextView mTextNum1,mTextNum2,mTextNum3,mTxetNum3;
-    //private ImageView mImageView;
+    private TextView mTextNum4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +34,19 @@ public class MainActivity_app extends BaseActivity_libs {
         ly_one.performClick();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         MainFragment_app fg1 = new MainFragment_app();
-        transaction.add(R.id.fragment_container,fg1);
+        transaction.replace(R.id.fragment_container,fg1);
         transaction.commit();
+
+        mTextNum1.setText("11");
+        mTextNum1.setVisibility(View.VISIBLE);
+
+        mTextNum2.setText("99");
+        mTextNum2.setVisibility(View.VISIBLE);
+
+        mTextNum3.setText("999+");
+        mTextNum3.setVisibility(View.VISIBLE);
+
+        mTextNum4.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -55,6 +66,7 @@ public class MainActivity_app extends BaseActivity_libs {
         mTextNum1 = (TextView)findViewById(R.id.tab_menu_deal_num);
         mTextNum2 = (TextView)findViewById(R.id.tab_menu_poi_num);
         mTextNum3 = (TextView)findViewById(R.id.tab_menu_more_num);
+        mTextNum4 = (TextView) findViewById(R.id.tab_menu_setting_partner);
     }
 
     @Override
@@ -100,7 +112,7 @@ public class MainActivity_app extends BaseActivity_libs {
                 transaction.replace(R.id.fragment_container, new FourFragment_app()).commit();
                 setSelected();
                 mTextView4.setSelected(true);
-                //mImageView.setVisibility(View.INVISIBLE);
+                mTextNum4.setVisibility(View.INVISIBLE);
                 break;
         }
     }

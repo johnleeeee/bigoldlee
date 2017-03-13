@@ -1,4 +1,4 @@
-package com.lzq.miniprogram.draggrid;
+package com.lzq.miniprogram.view.draggrid;
 
 /**
  * Created by lizhiqiang on 2017/3/12.

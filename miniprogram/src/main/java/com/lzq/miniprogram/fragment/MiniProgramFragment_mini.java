@@ -4,13 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.lzq.commlibs.baselayout.BaseFragment_libs;
 import com.lzq.miniprogram.R;
-import com.lzq.miniprogram.draggrid.ChannelItem;
-import com.lzq.miniprogram.draggrid.DragAdapter;
-import com.lzq.miniprogram.draggrid.DragGrid;
+import com.lzq.miniprogram.view.draggrid.ChannelItem;
+import com.lzq.miniprogram.view.draggrid.DragAdapter;
+import com.lzq.miniprogram.view.draggrid.DragGrid;
 
 import java.util.ArrayList;
 
@@ -58,14 +57,15 @@ public class MiniProgramFragment_mini extends BaseFragment_libs{
     }
 
     @Override
+    public void onClick(View view) {
+
+    }
+
+    @Override
     public void onDestroy() {
         // TODO Auto-generated method stub
         super.onDestroy();
         DragAdapter.selectedPos = -1;
     }
 
-    @Override
-    public void onClick(View view) {
-
-    }
 }
