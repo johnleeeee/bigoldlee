@@ -2,7 +2,6 @@ package com.example.lizhiqiang.bigoldlee.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,6 +12,10 @@ import com.example.lizhiqiang.bigoldlee.fragment.MainFragment_app;
 import com.example.lizhiqiang.bigoldlee.fragment.ThreeFragment_app;
 import com.example.lizhiqiang.bigoldlee.fragment.TwoFragment_app;
 import com.lzq.commlibs.baselayout.BaseActivity_libs;
+
+/**
+ * Created by lizhiqiang on 2017/3/10.
+ */
 
 public class MainActivity_app extends BaseActivity_libs {
     private LinearLayout ly_one,ly_two,ly_three,ly_four;

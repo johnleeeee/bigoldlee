@@ -9,7 +9,7 @@ import com.example.lizhiqiang.bigoldlee.R;
 import com.lzq.commlibs.baselayout.BaseFragment_libs;
 
 /**
- * Created by GaoHW on 2017/3/10.
+ * Created by lizhiqiang on 2017/3/10.
  */
 
 public class FourFragment_app extends BaseFragment_libs{

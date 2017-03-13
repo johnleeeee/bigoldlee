@@ -15,7 +15,7 @@ import com.lzq.miniprogram.draggrid.DragGrid;
 import java.util.ArrayList;
 
 /**
- * Created by GaoHW on 2017/3/10.
+ * Created by lizhiqiang on 2017/3/10.
  */
 
 public class MiniProgramFragment_mini extends BaseFragment_libs{

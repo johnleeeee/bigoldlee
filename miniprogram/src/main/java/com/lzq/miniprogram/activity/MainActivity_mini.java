@@ -9,6 +9,10 @@ import com.lzq.commlibs.baselayout.BaseActivity_libs;
 import com.lzq.miniprogram.R;
 import com.lzq.miniprogram.fragment.MiniProgramFragment_mini;
 
+/**
+ * Created by lizhiqiang on 2017/3/10.
+ */
+
 public class MainActivity_mini extends BaseActivity_libs {
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
