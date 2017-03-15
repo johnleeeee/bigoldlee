@@ -12,6 +12,7 @@ import com.example.lizhiqiang.bigoldlee.fragment.MainFragment_app;
 import com.example.lizhiqiang.bigoldlee.fragment.ThreeFragment_app;
 import com.example.lizhiqiang.bigoldlee.fragment.TwoFragment_app;
 import com.lzq.commlibs.baselayout.BaseActivity_libs;
+import com.lzq.miniprogram.view.BadgeView;
 
 /**
  * Created by lizhiqiang on 2017/3/10.
@@ -22,6 +23,7 @@ public class MainActivity_app extends BaseActivity_libs {
     private TextView mTextView1,mTextView2,mTextView3,mTextView4,txt_topbar;
     private TextView mTextNum1,mTextNum2,mTextNum3,mTxetNum3;
     private TextView mTextNum4;
+    private BadgeView badgeView1,badgeView2,badgeView3,badgeView4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,16 +39,6 @@ public class MainActivity_app extends BaseActivity_libs {
         transaction.replace(R.id.fragment_container,fg1);
         transaction.commit();
 
-        mTextNum1.setText("11");
-        mTextNum1.setVisibility(View.VISIBLE);
-
-        mTextNum2.setText("99");
-        mTextNum2.setVisibility(View.VISIBLE);
-
-        mTextNum3.setText("999+");
-        mTextNum3.setVisibility(View.VISIBLE);
-
-        mTextNum4.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -67,6 +59,24 @@ public class MainActivity_app extends BaseActivity_libs {
         mTextNum2 = (TextView)findViewById(R.id.tab_menu_poi_num);
         mTextNum3 = (TextView)findViewById(R.id.tab_menu_more_num);
         mTextNum4 = (TextView) findViewById(R.id.tab_menu_setting_partner);
+
+        badgeView1 = new BadgeView(this,mTextNum1);
+        badgeView1.setBadgeBackgroundColor(getResources().getColor(R.color.point_red));
+        badgeView1.setTextColor(getResources().getColor(R.color.text_white));
+        badgeView1.setTextSize(12);
+        badgeView1.setBadgePosition(BadgeView.POSITION_TOP_RIGHT);
+        badgeView1.setBadgeMargin(5);
+
+        mTextNum1.setText("11");
+        mTextNum1.setVisibility(View.VISIBLE);
+
+        mTextNum2.setText("99");
+        mTextNum2.setVisibility(View.VISIBLE);
+
+        mTextNum3.setText("999+");
+        mTextNum3.setVisibility(View.VISIBLE);
+
+        mTextNum4.setVisibility(View.VISIBLE);
     }
 
     @Override
