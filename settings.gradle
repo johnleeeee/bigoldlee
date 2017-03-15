@@ -1,1 +1,1 @@
-include ':app', ':miniprogram', ':commlibs'
+include ':app', ':miniprogram', ':commlibs', ':circle'
