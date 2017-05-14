@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="green47">#47d09f</color>
+    <color name="redf5">#f56767</color>
+    <color name="menu_commit_pressed">#2b967a</color>
+    <color name="menu_delete_pressed">#c74e53</color>
+</resources>
