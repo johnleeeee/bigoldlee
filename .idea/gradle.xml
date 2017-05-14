@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/circle" />
             <option value="$PROJECT_DIR$/commlibs" />
             <option value="$PROJECT_DIR$/miniprogram" />
+            <option value="$PROJECT_DIR$/shop" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

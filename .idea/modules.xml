@@ -5,8 +5,10 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/bigoldlee.iml" filepath="$PROJECT_DIR$/bigoldlee.iml" />
       <module fileurl="file://$PROJECT_DIR$/circle/circle.iml" filepath="$PROJECT_DIR$/circle/circle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/circle/circle.iml" filepath="$PROJECT_DIR$/circle/circle.iml" />
       <module fileurl="file://$PROJECT_DIR$/commlibs/commlibs.iml" filepath="$PROJECT_DIR$/commlibs/commlibs.iml" />
       <module fileurl="file://$PROJECT_DIR$/miniprogram/miniprogram.iml" filepath="$PROJECT_DIR$/miniprogram/miniprogram.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shop/shop.iml" filepath="$PROJECT_DIR$/shop/shop.iml" />
     </modules>
   </component>
 </project>
