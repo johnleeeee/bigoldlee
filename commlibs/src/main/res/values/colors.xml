@@ -357,6 +357,7 @@
     <color name="white_color_disable">#7fffffff</color>
 
     <color name="border_color">#a9b7b7</color>
+    <color name="greye2">#e2e2e2</color>
 
 
     <!--宫格颜色begin-->

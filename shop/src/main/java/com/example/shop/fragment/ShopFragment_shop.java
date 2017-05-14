@@ -1,5 +1,6 @@
 package com.example.shop.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.TextView;
 
 import com.example.shop.R;
+import com.example.shop.activity.GoodsDetailInfo;
 import com.example.shop.bean.DataVO;
 import com.lzq.commlibs.baselayout.BaseFragment_libs;
 import com.lzq.commlibs.http.OkHttpHelper;
@@ -32,6 +35,7 @@ import java.util.Map;
 public class ShopFragment_shop extends BaseFragment_libs implements IXListViewListener {
     private PullToRefreshSwipeMenuListView listView;//下拉列表
     private OkHttpHelper okHttpHelper = OkHttpHelper.getInstance();
+    private TextView title ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,6 +50,7 @@ public class ShopFragment_shop extends BaseFragment_libs implements IXListViewLi
     @Override
     protected void initView(View view) {
         listView = (PullToRefreshSwipeMenuListView) view.findViewById(R.id.shopList);
+        title = (TextView) view.findViewById(R.id.title);
     }
 
     @Override
@@ -55,16 +60,22 @@ public class ShopFragment_shop extends BaseFragment_libs implements IXListViewLi
         listView.setPullRefreshEnable(true);
         listView.setPullLoadEnable(true);
         listView.setXListViewListener(this);
+        title.setOnClickListener(this);
     }
 
     @Override
     protected void initData() {
-        callService();
+
     }
 
     @Override
     public void onClick(View v) {
-
+        int i = v.getId();
+        if (i == R.id.title) {
+            Intent intent = new Intent();
+            intent.setClass(mActivity, GoodsDetailInfo.class);
+            startActivity(intent);
+        }
     }
 
     /**
@@ -145,24 +156,6 @@ public class ShopFragment_shop extends BaseFragment_libs implements IXListViewLi
 
     }
 
-    private void callService(){
-        Log.e("shop", "callService");
-        Map<String,Object> params = new HashMap<>(2);
-        params.put("id","1");
-        String goodinfourl = "http://106.14.165.193:18081/admin/goods/info";
-        okHttpHelper.get(goodinfourl, params, new SpotsCallBack<DataVO>(mActivity) {
-
-            @Override
-            public void onSuccess(Response response, DataVO addresses) {
-                Log.e("shop",addresses + "");
-            }
-
-            @Override
-            public void onError(Response response, int code, Exception e) {
-                Log.e("shop",response + "");
-            }
-        });
-    }
 
     /*
     * dp转px
