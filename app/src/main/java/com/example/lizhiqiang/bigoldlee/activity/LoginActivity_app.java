@@ -85,7 +85,6 @@ public class LoginActivity_app extends BaseActivity_libs {
                 params.put("password", DESUtil.encode(Contants.DES_KEY,pwd));
                 okHttpHelper.post(Contants.API.LOGIN, params, new SpotsCallBack<LoginRespMsg<User>>(this) {
 
-
                     @Override
                     public void onSuccess(Response response, LoginRespMsg<User> userLoginRespMsg) {
 

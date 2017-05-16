@@ -5,18 +5,16 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 public class RefreshTime {
-    final static String PRE_NAME = "refresh_time";
-    final static String SET_FRESHTIME = "set_refresh_time";
 
-    public static String getRefreshTime(Context context) {
-        SharedPreferences preferences = context.getSharedPreferences(PRE_NAME, Context.MODE_APPEND);
-        return preferences.getString(SET_FRESHTIME, "");
+    public static String getRefreshTime(Context context , String spName , String setSpName) {//得到刷新时间
+        SharedPreferences preferences = context.getSharedPreferences(spName, Context.MODE_APPEND);
+        return preferences.getString(setSpName, "");
     }
 
-    public static void setRefreshTime(Context context, String newPasswd) {
-        SharedPreferences preferences = context.getSharedPreferences(PRE_NAME, Context.MODE_APPEND);
+    public static void setRefreshTime(Context context, String newPasswd , String spName , String setSpName) {
+        SharedPreferences preferences = context.getSharedPreferences(spName, Context.MODE_APPEND);
         Editor editor = preferences.edit();
-        editor.putString(SET_FRESHTIME, newPasswd);
+        editor.putString(setSpName, newPasswd);
         editor.commit();
     }
 

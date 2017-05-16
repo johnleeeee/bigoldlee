@@ -11,9 +11,10 @@ import android.widget.TextView;
 
 import com.example.shop.R;
 import com.example.shop.adapter.GoodListShowAdapter;
+import com.example.shop.bean.GoodsInfoDataVO;
 import com.example.shop.bean.GoodsListVO;
-import com.example.shop.utils.MyRefreshTime_ma;
 import com.lzq.commlibs.baselayout.BaseActivity_libs;
+import com.lzq.commlibs.commconst.Contants;
 import com.lzq.commlibs.http.OkHttpHelper;
 import com.lzq.commlibs.http.SpotsCallBack;
 import com.lzq.commlibs.refreshswipemenulistviewlibrary.PullToRefreshSwipeMenuListView;
@@ -22,11 +23,14 @@ import com.lzq.commlibs.refreshswipemenulistviewlibrary.swipemenu.bean.SwipeMenu
 import com.lzq.commlibs.refreshswipemenulistviewlibrary.swipemenu.bean.SwipeMenuItem;
 import com.lzq.commlibs.refreshswipemenulistviewlibrary.swipemenu.interfaces.OnMenuItemClickListener;
 import com.lzq.commlibs.refreshswipemenulistviewlibrary.swipemenu.interfaces.SwipeMenuCreator;
+import com.lzq.commlibs.refreshswipemenulistviewlibrary.util.RefreshTime;
 import com.squareup.okhttp.Response;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -44,11 +48,12 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
     private TextView backBtn;
 
     private OkHttpHelper okHttpHelper = OkHttpHelper.getInstance();
-    private MyRefreshTime_ma myRefreshTime;//刷新时间
+    private RefreshTime myRefreshTime;//刷新时间
     private boolean isExeOver = true;//刷新执行完成才能再次刷新
     private boolean isLastPage = false;//是否最后一页
     private int pageindex = 1;//页码
     private GoodListShowAdapter goodListShowAdapter;
+    private List<GoodsInfoDataVO> goodListData;
     private String shopID;
     private String title;
 
@@ -64,7 +69,7 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
 
     @Override
     protected void initView() {
-        myRefreshTime = new MyRefreshTime_ma("refresh_time1");
+        myRefreshTime = new RefreshTime();
         titleText = (TextView) findViewById(R.id.title_text);
         backBtn = (TextView) findViewById(R.id.back_btn);
         listView = (PullToRefreshSwipeMenuListView) findViewById(R.id.goods_list);
@@ -85,6 +90,7 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
         shopID = getIntent().getExtras().getString("shopID");
         title = getIntent().getExtras().getString("title");
         titleText.setText(title);
+        goodListData = new ArrayList<>();
         callService();
     }
 
@@ -96,7 +102,8 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
         pageindex = 1;
         isLastPage = false;
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        myRefreshTime.setRefreshTime(GoodsListActivity_shop.this.getApplicationContext(), df.format(new Date()));
+        myRefreshTime.setRefreshTime(GoodsListActivity_shop.this.getApplicationContext(), df.format(new Date())
+                , Contants.REFRESH_TIME , Contants.GOODSLIST_REFRESH_TIME);
         callService();
     }
     /**
@@ -115,9 +122,10 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
      * 刷新时间显示及刷新加载动画停止
      * */
     private void onLoad() {
-        /*listView.setRefreshTime(myRefreshTime.getRefreshTime(GoodsListActivity_shop.this.getApplicationContext()));
+        listView.setRefreshTime(myRefreshTime.getRefreshTime(GoodsListActivity_shop.this.getApplicationContext()
+                , Contants.REFRESH_TIME , Contants.GOODSLIST_REFRESH_TIME));
         listView.stopRefresh();
-        listView.stopLoadMore(isLastPage);*/
+        listView.stopLoadMore(isLastPage);
     }
     /**
      *侧滑按钮的创建
@@ -186,9 +194,8 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
         Map<String,Object> params = new HashMap<>(2);
         params.put("shop_id",shopID);
         params.put("page",pageindex);
-        String goodinfourl = "http://106.14.165.193:18081/admin/goods/list";
 
-        httpHelper.get(goodinfourl, params, new SpotsCallBack<GoodsListVO>(this) {
+        httpHelper.get(Contants.API.GOODSLIST_URL, params, new SpotsCallBack<GoodsListVO>(this) {
 
             @Override
             public void onSuccess(Response response, GoodsListVO goodsListVO) {
@@ -211,10 +218,16 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
                         }
                     }else{
                         if(goodListShowAdapter == null){
-                            goodListShowAdapter = new GoodListShowAdapter(GoodsListActivity_shop.this,goodsListVO.getData().getData());
+                            goodListData.clear();
+                            goodListData.addAll(goodsListVO.getData().getData());
+                            goodListShowAdapter = new GoodListShowAdapter(GoodsListActivity_shop.this,goodListData);
                             listView.setAdapter(goodListShowAdapter);
                         }else{
-                            goodListShowAdapter.notifyUpdata(goodsListVO.getData().getData());
+                            if(pageindex == 1){
+                                goodListData.clear();
+                            }
+                            goodListData.addAll(goodsListVO.getData().getData());
+                            goodListShowAdapter.notifyUpdata(goodListData);
                         }
                         isExeOver = true;
                         onLoad();

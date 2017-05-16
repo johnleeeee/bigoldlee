@@ -14,8 +14,8 @@ import com.example.shop.R;
 import com.example.shop.activity.GoodsListActivity_shop;
 import com.example.shop.adapter.ShopListShowAdapter;
 import com.example.shop.bean.ShopInfoVO;
-import com.example.shop.utils.MyRefreshTime_ma;
 import com.lzq.commlibs.baselayout.BaseFragment_libs;
+import com.lzq.commlibs.commconst.Contants;
 import com.lzq.commlibs.http.OkHttpHelper;
 import com.lzq.commlibs.refreshswipemenulistviewlibrary.PullToRefreshSwipeMenuListView;
 import com.lzq.commlibs.refreshswipemenulistviewlibrary.pulltorefresh.interfaces.IXListViewListener;
@@ -23,6 +23,7 @@ import com.lzq.commlibs.refreshswipemenulistviewlibrary.swipemenu.bean.SwipeMenu
 import com.lzq.commlibs.refreshswipemenulistviewlibrary.swipemenu.bean.SwipeMenuItem;
 import com.lzq.commlibs.refreshswipemenulistviewlibrary.swipemenu.interfaces.OnMenuItemClickListener;
 import com.lzq.commlibs.refreshswipemenulistviewlibrary.swipemenu.interfaces.SwipeMenuCreator;
+import com.lzq.commlibs.refreshswipemenulistviewlibrary.util.RefreshTime;
 import com.lzq.commlibs.util.CommonUtil;
 
 import java.text.SimpleDateFormat;
@@ -42,7 +43,7 @@ public class ShopFragment_shop extends BaseFragment_libs implements IXListViewLi
     private OkHttpHelper httpHelper = OkHttpHelper.getInstance();
     private PullToRefreshSwipeMenuListView listView;//下拉列表
     private OkHttpHelper okHttpHelper = OkHttpHelper.getInstance();
-    private MyRefreshTime_ma myRefreshTime;//刷新时间
+    private RefreshTime myRefreshTime;//刷新时间
     private Button vegetablesLeft;//蔬菜
     private Button fruitMiddle;//水果
     private Button breakfastRight;//早餐
@@ -73,7 +74,7 @@ public class ShopFragment_shop extends BaseFragment_libs implements IXListViewLi
 
     @Override
     protected void initView(View view) {
-        myRefreshTime = new MyRefreshTime_ma("refresh_time1");
+        myRefreshTime = new RefreshTime();
         int setWidth = CommonUtil.getWidthPixel(mActivity)/4+5;
         if(setWidth>dip2px(100)){setWidth = dip2px(100);}
         vegetablesLeft = (Button) view.findViewById(R.id.vegetables_left);
@@ -164,7 +165,8 @@ public class ShopFragment_shop extends BaseFragment_libs implements IXListViewLi
         pageindex = 1;
         isLastPage = false;
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        myRefreshTime.setRefreshTime(mActivity.getApplicationContext(), df.format(new Date()),switchNode);
+        myRefreshTime.setRefreshTime(mActivity.getApplicationContext(), df.format(new Date())
+                , Contants.REFRESH_TIME , Contants.SHOPLIST_REFRESH_TIME);
         callService();
     }
     /**
@@ -183,7 +185,8 @@ public class ShopFragment_shop extends BaseFragment_libs implements IXListViewLi
      * 刷新时间显示及刷新加载动画停止
      * */
     private void onLoad() {
-        listView.setRefreshTime(myRefreshTime.getRefreshTime(mActivity.getApplicationContext(),switchNode));
+        listView.setRefreshTime(myRefreshTime.getRefreshTime(mActivity.getApplicationContext()
+                , Contants.REFRESH_TIME , Contants.SHOPLIST_REFRESH_TIME));
         listView.stopRefresh();
         listView.stopLoadMore(isLastPage);
     }
@@ -292,6 +295,7 @@ public class ShopFragment_shop extends BaseFragment_libs implements IXListViewLi
 
         shopListShowAdapter = new ShopListShowAdapter(mActivity,shopList);
         listView.setAdapter(shopListShowAdapter);
+        onLoad();
 
     }
 
