@@ -30,14 +30,17 @@ public class GoodsDetailInfo extends BaseActivity_libs {
     private static  final  String TAG="GoodsDetailInfo";
 
     private SliderLayout mSliderLayout;
-
     private OkHttpHelper httpHelper = OkHttpHelper.getInstance();
 
     private TextView goodsName;
     private TextView goodsPrice;
     private TextView goodsMarketPrice;
     private TextView goodsUnit;
+    private TextView goodsStatus;
     private TextView goodsDetail;
+    private TextView goodsSkuPrice;
+    private TextView goodsStore;
+    private TextView goodsSales;
     private List<String> albumList = new ArrayList<>();
 
 
@@ -55,10 +58,14 @@ public class GoodsDetailInfo extends BaseActivity_libs {
 
         mSliderLayout = (SliderLayout) findViewById(R.id.slider);
         goodsName = (TextView) findViewById(R.id.goods_name);
-        goodsPrice= (TextView) findViewById(R.id.goods_price);
-        goodsMarketPrice= (TextView) findViewById(R.id.goods_market_price);
-        goodsUnit= (TextView) findViewById(R.id.goods_unit);
-        goodsDetail= (TextView) findViewById(R.id.goods_detail);
+        goodsPrice = (TextView) findViewById(R.id.goods_price);
+        goodsMarketPrice = (TextView) findViewById(R.id.goods_market_price);
+        goodsUnit = (TextView) findViewById(R.id.goods_unit);
+        goodsStatus = (TextView) findViewById(R.id.goods_status);
+        goodsDetail = (TextView) findViewById(R.id.goods_detail);
+        goodsSkuPrice = (TextView) findViewById(R.id.goods_sku_price);
+        goodsStore = (TextView) findViewById(R.id.goods_store);
+        goodsSales = (TextView) findViewById(R.id.goods_sales);
     }
 
     @Override
@@ -101,7 +108,15 @@ public class GoodsDetailInfo extends BaseActivity_libs {
         goodsPrice.setText(goodsDetailInfo.getData().getPrice());
         goodsMarketPrice.setText(goodsDetailInfo.getData().getMarket_price());
         goodsUnit.setText(goodsDetailInfo.getData().getUnit());
+        if (Integer.parseInt(goodsDetailInfo.getData().getStatus()) == 0) {
+            goodsStatus.setText("下架");
+        }else{
+            goodsStatus.setText("上架");
+        }
         goodsDetail.setText(goodsDetailInfo.getData().getDetail());
+        goodsSkuPrice.setText(goodsDetailInfo.getData().getSku().getPrice());
+        goodsStore.setText(goodsDetailInfo.getData().getSku().getStore());
+        goodsSales.setText(goodsDetailInfo.getData().getSku().getStore());
         albumList.clear();
         albumList.addAll(goodsDetailInfo.getData().getAlbum());
         initSlider();
