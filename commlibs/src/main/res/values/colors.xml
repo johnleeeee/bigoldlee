@@ -393,4 +393,7 @@
 
     <color name="commo_text_color">#ff333333</color>
     <!--宫格颜色end-->
+
+
+    <color name="lanse">#31B3EF</color>
 </resources>

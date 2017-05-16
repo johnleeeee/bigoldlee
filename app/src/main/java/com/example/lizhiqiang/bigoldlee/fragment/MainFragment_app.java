@@ -18,12 +18,12 @@ import com.lzq.commlibs.baselayout.BaseFragment_libs;
 
 public class MainFragment_app extends BaseFragment_libs {
 
-    private FrameLayout frame_appmain ;
+    //private FrameLayout frame_appmain ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_app,container,false);
-        frame_appmain = (FrameLayout) view.findViewById(R.id.frame_appmain);
+        //frame_appmain = (FrameLayout) view.findViewById(R.id.frame_appmain);
         return view;
     }
 
@@ -48,7 +48,7 @@ public class MainFragment_app extends BaseFragment_libs {
 
             //frame_appmain.removeAllViews();
             //必须有（事物）
-            FragmentTransaction beginTransaction = mActivity.getSupportFragmentManager().beginTransaction();
+            /*FragmentTransaction beginTransaction = mActivity.getSupportFragmentManager().beginTransaction();
             String appfragment = "com.lzq.miniprogram.fragment.MiniProgramFragment_mini";
 
             try {
@@ -61,7 +61,7 @@ public class MainFragment_app extends BaseFragment_libs {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
-            }
+            }*/
 
 
 

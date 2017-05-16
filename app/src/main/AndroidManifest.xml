@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MainActivity_app" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.shop.activity.GoodsDetailInfo" android:screenOrientation="portrait"/>
+        <activity android:name="com.example.shop.activity.GoodsDetailInfoActivity_shop" android:screenOrientation="portrait"/>
+        <activity android:name="com.example.shop.activity.GoodsListActivity_shop" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

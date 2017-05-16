@@ -51,7 +51,9 @@
     <dimen name="wh47">47dp</dimen>
     <dimen name="wh48">48dp</dimen>
     <dimen name="wh49">49dp</dimen>
-    <dimen name="wh60">49dp</dimen>
+    <dimen name="wh60">60dp</dimen>
+    <dimen name="wh80">80dp</dimen>
+    <dimen name="wh100">100dp</dimen>
 
 
 

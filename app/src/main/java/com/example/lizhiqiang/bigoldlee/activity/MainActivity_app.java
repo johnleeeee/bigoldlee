@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.lizhiqiang.bigoldlee.R;
@@ -16,8 +17,9 @@ import com.lzq.commlibs.baselayout.BaseActivity_libs;
 
 public class MainActivity_app extends BaseActivity_libs {
     private LinearLayout ly_one,ly_two,ly_three,ly_four;
+    RelativeLayout ly_top_bar;
     private TextView mTextView1,mTextView2,mTextView3,mTextView4,txt_topbar;
-    private TextView mTextNum1,mTextNum2,mTextNum3,mTxetNum3;
+    private TextView mTextNum1,mTextNum2,mTextNum3;
     //private ImageView mImageView;
 
     @Override
@@ -41,6 +43,7 @@ public class MainActivity_app extends BaseActivity_libs {
         ly_two = (LinearLayout)findViewById(R.id.ly_tab_menu_poi);
         ly_three = (LinearLayout)findViewById(R.id.ly_tab_menu_more);
         ly_four = (LinearLayout)findViewById(R.id.ly_tab_menu_user);
+        ly_top_bar = (RelativeLayout) findViewById(R.id.ly_top_bar);
 
         mTextView1 = (TextView)findViewById(R.id.tab_menu_deal);
         mTextView2 = (TextView)findViewById(R.id.tab_menu_poi);
@@ -77,6 +80,7 @@ public class MainActivity_app extends BaseActivity_libs {
                 setSelected();
                 mTextView1.setSelected(true);
                 mTextNum1.setVisibility(View.INVISIBLE);
+                ly_top_bar.setVisibility(View.VISIBLE);
                 break;
             case R.id.ly_tab_menu_poi:
                 txt_topbar.setText("第二个");
@@ -84,6 +88,7 @@ public class MainActivity_app extends BaseActivity_libs {
                 setSelected();
                 mTextView2.setSelected(true);
                 mTextNum2.setVisibility(View.INVISIBLE);
+                ly_top_bar.setVisibility(View.GONE);
                 break;
             case R.id.ly_tab_menu_more:
                 txt_topbar.setText("第三个");
@@ -91,12 +96,14 @@ public class MainActivity_app extends BaseActivity_libs {
                 setSelected();
                 mTextView3.setSelected(true);
                 mTextNum3.setVisibility(View.INVISIBLE);
+                ly_top_bar.setVisibility(View.VISIBLE);
                 break;
             case R.id.ly_tab_menu_user:
                 txt_topbar.setText("第四个");
                 transaction.replace(R.id.fragment_container, new FourFragment_app()).commit();
                 setSelected();
                 mTextView4.setSelected(true);
+                ly_top_bar.setVisibility(View.VISIBLE);
                 //mImageView.setVisibility(View.INVISIBLE);
                 break;
         }
