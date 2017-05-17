@@ -46,6 +46,7 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
     private PullToRefreshSwipeMenuListView listView;//下拉列表
     private TextView titleText;
     private TextView backBtn;
+    private TextView controlBtn;
 
     private OkHttpHelper okHttpHelper = OkHttpHelper.getInstance();
     private RefreshTime myRefreshTime;//刷新时间
@@ -72,6 +73,9 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
         myRefreshTime = new RefreshTime();
         titleText = (TextView) findViewById(R.id.title_text);
         backBtn = (TextView) findViewById(R.id.back_btn);
+        controlBtn = (TextView) findViewById(R.id.control_btn);
+        controlBtn.setVisibility(View.VISIBLE);
+        controlBtn.setText("添加");
         listView = (PullToRefreshSwipeMenuListView) findViewById(R.id.goods_list);
     }
 
@@ -83,6 +87,7 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
         listView.setPullLoadEnable(true);
         listView.setXListViewListener(this);
         backBtn.setOnClickListener(this);
+        controlBtn.setOnClickListener(this);
     }
 
     @Override
@@ -183,7 +188,16 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
             @Override
             public void onMenuItemClick(int position, SwipeMenu menu, int index) {
                 /*index：从左到右侧滑按钮按钮*/
+                switch (index){
+                    case 0:
 
+                        break;
+                    case 1:
+
+                        break;
+                    default:
+                        break;
+                }
             }
         });
 
@@ -264,6 +278,8 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
         int id = v.getId();
         if (id == R.id.back_btn) {
             finish();
+        }else if(id == R.id.control_btn){
+
         }
     }
 }

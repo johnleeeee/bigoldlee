@@ -13,7 +13,7 @@ import android.widget.Button;
 import com.example.shop.R;
 import com.example.shop.activity.GoodsListActivity_shop;
 import com.example.shop.adapter.ShopListShowAdapter;
-import com.example.shop.bean.ShopInfoVO;
+import com.example.shop.bean.ShopInfoDataVO;
 import com.lzq.commlibs.baselayout.BaseFragment_libs;
 import com.lzq.commlibs.commconst.Contants;
 import com.lzq.commlibs.http.OkHttpHelper;
@@ -52,7 +52,7 @@ public class ShopFragment_shop extends BaseFragment_libs implements IXListViewLi
     private boolean isLastPage = false;//是否最后一页
     private int pageindex = 1;//页码
     private ShopListShowAdapter shopListShowAdapter;
-    private List<ShopInfoVO> shopList;
+    private List<ShopInfoDataVO> shopList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -256,10 +256,10 @@ public class ShopFragment_shop extends BaseFragment_libs implements IXListViewLi
     private void callService(){
 
         shopList = new ArrayList<>();
-        ShopInfoVO shopInfoVO = new ShopInfoVO();
-        ShopInfoVO.Area arae = shopInfoVO.new Area();
-        ShopInfoVO.Parent parent1 = shopInfoVO.new Parent();
-        ShopInfoVO.Parent parent2 = shopInfoVO.new Parent();
+        ShopInfoDataVO shopInfoVO = new ShopInfoDataVO();
+        ShopInfoDataVO.Area arae = shopInfoVO.new Area();
+        ShopInfoDataVO.Parent parent1 = shopInfoVO.new Parent();
+        ShopInfoDataVO.Parent parent2 = shopInfoVO.new Parent();
 
         parent2.setId("310100");
         parent2.setParentid("310000");

@@ -25,6 +25,8 @@ public class Contants {
 
         public static final String GOODSLIST_URL = BASE_URL + "goods/list";
 
+        public static final String CREATGOODS_URL = BASE_URL + "goods/create";
+
 
     }
 }
