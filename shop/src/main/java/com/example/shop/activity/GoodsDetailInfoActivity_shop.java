@@ -1,8 +1,11 @@
 package com.example.shop.activity;
 
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
@@ -33,14 +36,16 @@ public class GoodsDetailInfoActivity_shop extends BaseActivity_libs {
     private OkHttpHelper httpHelper = OkHttpHelper.getInstance();
 
     private TextView goodsName;
-    private TextView goodsPrice;
-    private TextView goodsMarketPrice;
+    private EditText goodsPrice;
+    private EditText goodsMarketPrice;
     private TextView goodsUnit;
     private TextView goodsStatus;
-    private TextView goodsDetail;
-    private TextView goodsSkuPrice;
-    private TextView goodsStore;
-    private TextView goodsSales;
+    private EditText goodsDetail;
+    private EditText goodsSkuPrice;
+    private EditText goodsStore;
+    private EditText goodsSales;
+    private Button goodsSave;
+    private Button goodsUpdate;
     private List<String> albumList = new ArrayList<>();
     private String goodsID;
 
@@ -50,8 +55,8 @@ public class GoodsDetailInfoActivity_shop extends BaseActivity_libs {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.goods_detail);
         initView();
-        initListener();
         initData();
+        initListener();
 
     }
     @Override
@@ -59,19 +64,77 @@ public class GoodsDetailInfoActivity_shop extends BaseActivity_libs {
 
         mSliderLayout = (SliderLayout) findViewById(R.id.slider);
         goodsName = (TextView) findViewById(R.id.goods_name);
-        goodsPrice = (TextView) findViewById(R.id.goods_price);
-        goodsMarketPrice = (TextView) findViewById(R.id.goods_market_price);
+        goodsPrice = (EditText) findViewById(R.id.goods_price);
+        goodsMarketPrice = (EditText) findViewById(R.id.goods_market_price);
         goodsUnit = (TextView) findViewById(R.id.goods_unit);
         goodsStatus = (TextView) findViewById(R.id.goods_status);
-        goodsDetail = (TextView) findViewById(R.id.goods_detail);
-        goodsSkuPrice = (TextView) findViewById(R.id.goods_sku_price);
-        goodsStore = (TextView) findViewById(R.id.goods_store);
-        goodsSales = (TextView) findViewById(R.id.goods_sales);
+        goodsDetail = (EditText) findViewById(R.id.goods_detail);
+        goodsSkuPrice = (EditText) findViewById(R.id.goods_sku_price);
+        goodsStore = (EditText) findViewById(R.id.goods_store);
+        goodsSales = (EditText) findViewById(R.id.goods_sales);
+        goodsSave = (Button) findViewById(R.id.goods_save);
+        goodsUpdate = (Button) findViewById(R.id.goods_update);
     }
 
     @Override
     protected void initListener() {
+        goodsUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goodsPrice.setEnabled(true);
+                goodsMarketPrice.setEnabled(true);
+                goodsDetail.setEnabled(true);
+//                goodsSkuPrice.setEnabled(true);
+//                goodsStore.setEnabled(true);
+//                goodsSales.setEnabled(true);
 
+
+            }
+        });
+        goodsSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goodsPrice.setEnabled(false);
+                goodsMarketPrice.setEnabled(false);
+                goodsDetail.setEnabled(false);
+//                goodsSkuPrice.setEnabled(false);
+//                goodsStore.setEnabled(false);
+//                goodsSales.setEnabled(false);
+                Map<String,Object> params = new HashMap<String,Object>();
+                params.put("id",goodsID);
+                params.put("price",goodsPrice.getText());
+                params.put("market_price",goodsMarketPrice.getText());
+                String goodupdateurl = "http://106.14.165.193:18081/admin/goods/update";
+                //params.put("price",goodsSkuPrice.getText());
+                httpHelper.post(goodupdateurl, params, new SpotsCallBack<OneGoodsVO>(GoodsDetailInfoActivity_shop.this) {
+                    @Override
+                    public void onSuccess(Response response, OneGoodsVO o) {
+                        if (o.getErr().equals("0")){
+                            new  AlertDialog.Builder(GoodsDetailInfoActivity_shop.this)
+                                    .setTitle("提示" )
+                                    .setMessage("修改成功" )
+                                    .setPositiveButton("确定" ,  null)
+                                    .show();
+                        }else{
+                            new  AlertDialog.Builder(GoodsDetailInfoActivity_shop.this)
+                                    .setTitle("提示" )
+                                    .setMessage("修改失败")
+                                    .setPositiveButton("确定" ,  null)
+                                    .show();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Response response, int code, Exception e) {
+
+                    }
+                });
+
+
+
+            }
+        });
     }
 
     @Override
