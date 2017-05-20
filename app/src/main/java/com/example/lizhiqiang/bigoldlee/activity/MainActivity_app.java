@@ -2,7 +2,6 @@ package com.example.lizhiqiang.bigoldlee.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 import com.example.lizhiqiang.bigoldlee.R;
 import com.example.lizhiqiang.bigoldlee.fragment.FourFragment_app;
 import com.example.lizhiqiang.bigoldlee.fragment.MainFragment_app;
-import com.example.lizhiqiang.bigoldlee.fragment.ThreeFragment_app;
 import com.example.lizhiqiang.bigoldlee.fragment.TwoFragment_app;
 import com.lzq.commlibs.baselayout.BaseActivity_libs;
 
@@ -41,27 +39,27 @@ public class MainActivity_app extends BaseActivity_libs {
     protected void initView() {
         ly_one = (LinearLayout)findViewById(R.id.ly_tab_menu_deal);
         ly_two = (LinearLayout)findViewById(R.id.ly_tab_menu_poi);
-        ly_three = (LinearLayout)findViewById(R.id.ly_tab_menu_more);
+        //ly_three = (LinearLayout)findViewById(R.id.ly_tab_menu_more);
         ly_four = (LinearLayout)findViewById(R.id.ly_tab_menu_user);
         ly_top_bar = (RelativeLayout) findViewById(R.id.ly_top_bar);
 
         mTextView1 = (TextView)findViewById(R.id.tab_menu_deal);
         mTextView2 = (TextView)findViewById(R.id.tab_menu_poi);
-        mTextView3 = (TextView)findViewById(R.id.tab_menu_more);
+        //mTextView3 = (TextView)findViewById(R.id.tab_menu_more);
         mTextView4 = (TextView)findViewById(R.id.tab_menu_user);
         txt_topbar = (TextView)findViewById(R.id.txt_topbar);
-        txt_topbar.setText("主界面");
+        txt_topbar.setText("订单");
 
         mTextNum1 = (TextView)findViewById(R.id.tab_menu_deal_num);
         mTextNum2 = (TextView)findViewById(R.id.tab_menu_poi_num);
-        mTextNum3 = (TextView)findViewById(R.id.tab_menu_more_num);
+        //mTextNum3 = (TextView)findViewById(R.id.tab_menu_more_num);
     }
 
     @Override
     protected void initListener() {
         ly_one.setOnClickListener(this);
         ly_two.setOnClickListener(this);
-        ly_three.setOnClickListener(this);
+        //ly_three.setOnClickListener(this);
         ly_four.setOnClickListener(this);
     }
 
@@ -75,7 +73,7 @@ public class MainActivity_app extends BaseActivity_libs {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch (view.getId()) {
             case R.id.ly_tab_menu_deal:
-                txt_topbar.setText("主界面");
+                txt_topbar.setText("订单");
                 transaction.replace(R.id.fragment_container, new MainFragment_app()).commit();
                 setSelected();
                 mTextView1.setSelected(true);
@@ -83,23 +81,23 @@ public class MainActivity_app extends BaseActivity_libs {
                 ly_top_bar.setVisibility(View.VISIBLE);
                 break;
             case R.id.ly_tab_menu_poi:
-                txt_topbar.setText("第二个");
+                txt_topbar.setText("商品");
                 transaction.replace(R.id.fragment_container, new TwoFragment_app()).commit();
                 setSelected();
                 mTextView2.setSelected(true);
                 mTextNum2.setVisibility(View.INVISIBLE);
                 ly_top_bar.setVisibility(View.GONE);
                 break;
-            case R.id.ly_tab_menu_more:
-                txt_topbar.setText("第三个");
-                transaction.replace(R.id.fragment_container, new ThreeFragment_app()).commit();
-                setSelected();
-                mTextView3.setSelected(true);
-                mTextNum3.setVisibility(View.INVISIBLE);
-                ly_top_bar.setVisibility(View.VISIBLE);
-                break;
+//            case R.id.ly_tab_menu_more:
+//                txt_topbar.setText("第三个");
+//                transaction.replace(R.id.fragment_container, new ThreeFragment_app()).commit();
+//                setSelected();
+//                mTextView3.setSelected(true);
+//                mTextNum3.setVisibility(View.INVISIBLE);
+//                ly_top_bar.setVisibility(View.VISIBLE);
+//                break;
             case R.id.ly_tab_menu_user:
-                txt_topbar.setText("第四个");
+                txt_topbar.setText("用户");
                 transaction.replace(R.id.fragment_container, new FourFragment_app()).commit();
                 setSelected();
                 mTextView4.setSelected(true);
@@ -113,7 +111,7 @@ public class MainActivity_app extends BaseActivity_libs {
     private void setSelected() {
         mTextView1.setSelected(false);
         mTextView2.setSelected(false);
-        mTextView3.setSelected(false);
+        //mTextView3.setSelected(false);
         mTextView4.setSelected(false);
     }
 }

@@ -15,6 +15,7 @@ import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.example.shop.R;
 import com.example.shop.bean.OneGoodsVO;
 import com.lzq.commlibs.baselayout.BaseActivity_libs;
+import com.lzq.commlibs.commconst.Contants;
 import com.lzq.commlibs.http.OkHttpHelper;
 import com.lzq.commlibs.http.SpotsCallBack;
 import com.squareup.okhttp.Response;
@@ -25,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by lizhiqiang on 2017/5/15.
+ * Created by huangjingyun on 2017/5/15.
  */
 
 public class GoodsDetailInfoActivity_shop extends BaseActivity_libs {
@@ -104,9 +105,9 @@ public class GoodsDetailInfoActivity_shop extends BaseActivity_libs {
                 params.put("id",goodsID);
                 params.put("price",goodsPrice.getText());
                 params.put("market_price",goodsMarketPrice.getText());
-                String goodupdateurl = "http://106.14.165.193:18081/admin/goods/update";
+                //String goodupdateurl = "http://106.14.165.193:18081/admin/goods/update";
                 //params.put("price",goodsSkuPrice.getText());
-                httpHelper.post(goodupdateurl, params, new SpotsCallBack<OneGoodsVO>(GoodsDetailInfoActivity_shop.this) {
+                httpHelper.post(Contants.API.GOODSUPDATE_URL, params, new SpotsCallBack<OneGoodsVO>(GoodsDetailInfoActivity_shop.this) {
                     @Override
                     public void onSuccess(Response response, OneGoodsVO o) {
                         if (o.getErr().equals("0")){
@@ -152,8 +153,8 @@ public class GoodsDetailInfoActivity_shop extends BaseActivity_libs {
         Log.e("shop", "callService");
         Map<String,Object> params = new HashMap<>(2);
         params.put("id",goodsID);
-        String goodinfourl = "http://106.14.165.193:18081/admin/goods/info";
-        httpHelper.get(goodinfourl, params, new SpotsCallBack<OneGoodsVO>(this) {
+        //String goodinfourl = "http://106.14.165.193:18081/admin/goods/info";
+        httpHelper.get(Contants.API.GOODSINFO_URL, params, new SpotsCallBack<OneGoodsVO>(this) {
 
             @Override
             public void onSuccess(Response response, OneGoodsVO goodsDetailInfo) {
@@ -197,7 +198,7 @@ public class GoodsDetailInfoActivity_shop extends BaseActivity_libs {
             for (String album : albumList){
                 TextSliderView textSliderView = new TextSliderView(this);
                 textSliderView.image("album");
-                textSliderView.image("https://www.baidu.com/img/bd_logo1.png");
+                //textSliderView.image("https://www.baidu.com/img/bd_logo1.png");
                 //textSliderView.description(banner.getName());
                 textSliderView.setScaleType(BaseSliderView.ScaleType.Fit);
                 mSliderLayout.addSlider(textSliderView);

@@ -21,10 +21,13 @@ public class Contants {
 
         public static final String BASE_URL = "http://106.14.165.193:18081/admin/";
 
-        public static final String LOGIN=BASE_URL +"auth/login";
+        public static final String LOGIN = BASE_URL +"auth/login";
 
-        public static final String GOODSLIST_URL = BASE_URL + "goods/list";
+        public static final String GOODSLIST_URL = BASE_URL + "goods/lists";
 
+        public  static final  String GOODSINFO_URL = BASE_URL + "goods/info";
+
+        public  static final  String GOODSUPDATE_URL = BASE_URL + "goods/update";
 
     }
 }

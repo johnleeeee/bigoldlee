@@ -25,6 +25,7 @@ public class GoodsInfoDataVO {
     private String detail;
     private String status;
     private Sku sku;
+    private Category category;
 
     public class Sku{
         private String price;
@@ -73,6 +74,103 @@ public class GoodsInfoDataVO {
                     ", supplier_id='" + supplier_id + '\'' +
                     '}';
         }
+    }
+
+    public class Category{
+        private String id;
+        private String parent_id;
+        private String name;
+        Parent parent;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getParent_id() {
+            return parent_id;
+        }
+
+        public void setParent_id(String parent_id) {
+            this.parent_id = parent_id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public Parent getParent() {
+            return parent;
+        }
+
+        public void setParent(Parent parent) {
+            this.parent = parent;
+        }
+
+        @Override
+        public String toString() {
+            return "Category{" +
+                    "id='" + id + '\'' +
+                    ", parent_id='" + parent_id + '\'' +
+                    ", name='" + name + '\'' +
+                    ", parent=" + parent +
+                    '}';
+        }
+
+        public class Parent{
+            private String id;
+            private String parent_id;
+            private String name;
+
+            public String getId() {
+                return id;
+            }
+
+            public void setId(String id) {
+                this.id = id;
+            }
+
+            public String getParent_id() {
+                return parent_id;
+            }
+
+            public void setParent_id(String parent_id) {
+                this.parent_id = parent_id;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            @Override
+            public String toString() {
+                return "Parent{" +
+                        "id='" + id + '\'' +
+                        ", parent_id='" + parent_id + '\'' +
+                        ", name='" + name + '\'' +
+                        '}';
+            }
+        }
+
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public String getId() {

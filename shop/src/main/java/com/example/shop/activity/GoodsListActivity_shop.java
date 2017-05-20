@@ -44,7 +44,7 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
 
     private OkHttpHelper httpHelper = OkHttpHelper.getInstance();
     private PullToRefreshSwipeMenuListView listView;//下拉列表
-    private TextView titleText;
+    //private TextView titleText;
     private TextView backBtn;
 
     private OkHttpHelper okHttpHelper = OkHttpHelper.getInstance();
@@ -70,7 +70,7 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
     @Override
     protected void initView() {
         myRefreshTime = new RefreshTime();
-        titleText = (TextView) findViewById(R.id.title_text);
+        //titleText = (TextView) findViewById(R.id.title_text);
         backBtn = (TextView) findViewById(R.id.back_btn);
         listView = (PullToRefreshSwipeMenuListView) findViewById(R.id.goods_list);
     }
@@ -88,8 +88,8 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
     @Override
     protected void initData() {
         shopID = getIntent().getExtras().getString("shopID");
-        title = getIntent().getExtras().getString("title");
-        titleText.setText(title);
+//        title = getIntent().getExtras().getString("title");
+//        titleText.setText(title);
         goodListData = new ArrayList<>();
         callService();
     }

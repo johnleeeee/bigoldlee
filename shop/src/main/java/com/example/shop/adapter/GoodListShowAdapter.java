@@ -66,7 +66,11 @@ public class GoodListShowAdapter extends BaseAdapter {
         viewHolder.goodsBrief.setText(goodsInfoDataVO.getBrief());
         viewHolder.goodsPrice.setText(goodsInfoDataVO.getPrice()+"/"+ goodsInfoDataVO.getUnit());
         viewHolder.goodsMarketPrice.setText(goodsInfoDataVO.getMarket_price()+"/"+ goodsInfoDataVO.getUnit());
-
+        if (goodsInfoDataVO.getStatus().equals("1")){
+            viewHolder.goodsStatus.setText("已上架");
+        }else{
+            viewHolder.goodsStatus.setText("已下架");
+        }
         return convertView;
     }
 
@@ -78,6 +82,7 @@ public class GoodListShowAdapter extends BaseAdapter {
         TextView goodsBrief;
         TextView goodsPrice;
         TextView goodsMarketPrice;
+        TextView goodsStatus;
 
         public ViewHolder(View itemView) {
 
@@ -86,7 +91,7 @@ public class GoodListShowAdapter extends BaseAdapter {
             goodsBrief = (TextView) itemView.findViewById(R.id.goods_brief);
             goodsPrice = (TextView) itemView.findViewById(R.id.goods_price);
             goodsMarketPrice = (TextView) itemView.findViewById(R.id.goods_market_price);
-
+            goodsStatus = (TextView) itemView.findViewById(R.id.goods_status);
         }
 
     }
