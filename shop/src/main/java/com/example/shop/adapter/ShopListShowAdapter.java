@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.shop.R;
-import com.example.shop.bean.ShopInfoVO;
+import com.example.shop.bean.ShopInfoDataVO;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -21,15 +21,15 @@ import java.util.List;
 public class ShopListShowAdapter extends BaseAdapter{
 
     private Context context;
-    private List<ShopInfoVO> shopInfoVOList;
-    private ShopInfoVO shopInfoVO;
+    private List<ShopInfoDataVO> shopInfoVOList;
+    private ShopInfoDataVO shopInfoVO;
 
-    public ShopListShowAdapter(Context context, List<ShopInfoVO> shopInfoVOList){
+    public ShopListShowAdapter(Context context, List<ShopInfoDataVO> shopInfoVOList){
         this.context = context;
         this.shopInfoVOList = shopInfoVOList;
     }
 
-    public void notifyUpdata(List<ShopInfoVO> shopInfoVOList){
+    public void notifyUpdata(List<ShopInfoDataVO> shopInfoVOList){
         this.shopInfoVOList = shopInfoVOList;
         notifyDataSetChanged();
     }
@@ -40,7 +40,7 @@ public class ShopListShowAdapter extends BaseAdapter{
     }
 
     @Override
-    public ShopInfoVO getItem(int position) {
+    public ShopInfoDataVO getItem(int position) {
         return shopInfoVOList.get(position);
     }
 

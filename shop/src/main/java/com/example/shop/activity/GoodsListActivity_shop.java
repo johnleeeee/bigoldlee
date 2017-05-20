@@ -8,6 +8,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shop.R;
 import com.example.shop.adapter.GoodListShowAdapter;
@@ -46,6 +47,7 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
     private PullToRefreshSwipeMenuListView listView;//下拉列表
     //private TextView titleText;
     private TextView backBtn;
+    private TextView controlBtn;
 
     private OkHttpHelper okHttpHelper = OkHttpHelper.getInstance();
     private RefreshTime myRefreshTime;//刷新时间
@@ -72,6 +74,9 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
         myRefreshTime = new RefreshTime();
         //titleText = (TextView) findViewById(R.id.title_text);
         backBtn = (TextView) findViewById(R.id.back_btn);
+        controlBtn = (TextView) findViewById(R.id.control_btn);
+        controlBtn.setVisibility(View.VISIBLE);
+        controlBtn.setText("添加");
         listView = (PullToRefreshSwipeMenuListView) findViewById(R.id.goods_list);
     }
 
@@ -83,6 +88,7 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
         listView.setPullLoadEnable(true);
         listView.setXListViewListener(this);
         backBtn.setOnClickListener(this);
+        controlBtn.setOnClickListener(this);
     }
 
     @Override
@@ -183,7 +189,16 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
             @Override
             public void onMenuItemClick(int position, SwipeMenu menu, int index) {
                 /*index：从左到右侧滑按钮按钮*/
-
+                switch (index){
+                    case 0:
+                        Toast.makeText(GoodsListActivity_shop.this,"更新",Toast.LENGTH_SHORT).show();
+                        break;
+                    case 1:
+                        Toast.makeText(GoodsListActivity_shop.this,"删除",Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        break;
+                }
             }
         });
 
@@ -199,6 +214,7 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
 
             @Override
             public void onSuccess(Response response, GoodsListVO goodsListVO) {
+                if(goodsListVO.getErr().equals("0")){
                 if(goodsListVO == null||goodsListVO.getData() == null||goodsListVO.getData().getData()==null){
                     if(pageindex > 1){
                         pageindex--;//如果未请求到数据页码减回来
@@ -232,7 +248,9 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
                         isExeOver = true;
                         onLoad();
                     }
-
+                }
+                }else{
+                    Toast.makeText(GoodsListActivity_shop.this,"请求数据有误！",Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -245,12 +263,11 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
                 isExeOver = true;
                 onLoad();
                 //请求异常
+                Toast.makeText(GoodsListActivity_shop.this,response+"",Toast.LENGTH_SHORT).show();
                 Log.e(TAG,response + "");
             }
         });
     }
-
-
 
     /*
     * dp转px
@@ -264,6 +281,8 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
         int id = v.getId();
         if (id == R.id.back_btn) {
             finish();
+        }else if(id == R.id.control_btn){
+            Toast.makeText(GoodsListActivity_shop.this,"添加",Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -4,7 +4,7 @@ package com.example.shop.bean;
  * Created by lizhiqiang on 2017/5/16.
  */
 
-public class ShopInfoVO {
+public class ShopInfoDataVO {
     private String id;
     private String sn;
     private String name;
@@ -290,7 +290,7 @@ public class ShopInfoVO {
 
     @Override
     public String toString() {
-        return "ShopInfoVO{" +
+        return "ShopInfoDataVO{" +
                 "id='" + id + '\'' +
                 ", sn='" + sn + '\'' +
                 ", name='" + name + '\'' +

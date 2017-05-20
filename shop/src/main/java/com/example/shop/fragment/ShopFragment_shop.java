@@ -13,7 +13,7 @@ import android.widget.Button;
 import com.example.shop.R;
 import com.example.shop.activity.GoodsListActivity_shop;
 import com.example.shop.adapter.ShopListShowAdapter;
-import com.example.shop.bean.ShopInfoVO;
+import com.example.shop.bean.ShopInfoDataVO;
 import com.lzq.commlibs.baselayout.BaseFragment_libs;
 import com.lzq.commlibs.commconst.Contants;
 import com.lzq.commlibs.http.OkHttpHelper;
@@ -52,7 +52,7 @@ public class ShopFragment_shop extends BaseFragment_libs implements IXListViewLi
     private boolean isLastPage = false;//是否最后一页
     private int pageindex = 1;//页码
     private ShopListShowAdapter shopListShowAdapter;
-    private List<ShopInfoVO> shopList;
+    private List<ShopInfoDataVO> shopList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -81,6 +81,8 @@ public class ShopFragment_shop extends BaseFragment_libs implements IXListViewLi
         vegetablesLeft.setWidth(setWidth);
         fruitMiddle = (Button) view.findViewById(R.id.fruit_middle);
         fruitMiddle.setWidth(setWidth);
+        breakfastRight = (Button) view.findViewById(R.id.breakfast_right);
+        breakfastRight.setWidth(setWidth);
         listView = (PullToRefreshSwipeMenuListView) view.findViewById(R.id.goods_list);
     }
 
@@ -108,9 +110,9 @@ public class ShopFragment_shop extends BaseFragment_libs implements IXListViewLi
                     fruitMiddle.setBackground(getResources().getDrawable(R.drawable.middle_while_borde_rounded_ma));
                     breakfastRight.setTextColor(getResources().getColor(R.color.lanse));
                     breakfastRight.setBackground(getResources().getDrawable(R.drawable.right_while_borde_rounded_ma));
-                    /*approvalListDataShow.clear();
-                    if (approvalMainListAdapter != null){
-                            approvalMainListAdapter.updateListView(approvalListDataShow);
+                    /*shopList.clear();
+                    if (ShopListShowAdapter != null){
+                            shopListShowAdapter.updateListView(shopList);
                     }*/
                     callService();
                 }
@@ -120,7 +122,7 @@ public class ShopFragment_shop extends BaseFragment_libs implements IXListViewLi
         fruitMiddle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (switchNode == 1) {
+                if (switchNode != 1) {
                     switchNode = 1;
                     isLastPage = false;
                     pageindex = 1;
@@ -128,18 +130,44 @@ public class ShopFragment_shop extends BaseFragment_libs implements IXListViewLi
                     listView.smoothCloseMenu();
                     createSwipe();
                     fruitMiddle.setTextColor(getResources().getColor(R.color.white));
-                    fruitMiddle.setBackground(getResources().getDrawable(R.drawable.right_while_borde_rounded_focused_ma));
+                    fruitMiddle.setBackground(getResources().getDrawable(R.drawable.middle_while_borde_rounded_focused_ma));
                     vegetablesLeft.setTextColor(getResources().getColor(R.color.lanse));
                     vegetablesLeft.setBackground(getResources().getDrawable(R.drawable.left_while_borde_rounded_ma));
                     breakfastRight.setTextColor(getResources().getColor(R.color.lanse));
-                    breakfastRight.setBackground(getResources().getDrawable(R.drawable.left_while_borde_rounded_ma));
+                    breakfastRight.setBackground(getResources().getDrawable(R.drawable.right_while_borde_rounded_ma));
                     //先清除数据，防止网络异常时数据显示错乱
-                    /*approvalListDataShow.clear();
-                    if (approvalMainListAdapter != null){
-                            approvalMainListAdapter.updateListView(approvalListDataShow);
+                    /*shopList.clear();
+                    if (ShopListShowAdapter != null){
+                            shopListShowAdapter.updateListView(shopList);
                     }*/
                     callService();
                 }
+            }
+        });
+
+        breakfastRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(switchNode != 2){
+                switchNode = 2;
+                isLastPage = false;
+                pageindex = 1;
+                //设置侧滑控件为关闭状态
+                listView.smoothCloseMenu();
+                createSwipe();
+                breakfastRight.setTextColor(getResources().getColor(R.color.white));
+                breakfastRight.setBackground(getResources().getDrawable(R.drawable.right_while_borde_rounded_focused_ma));
+                fruitMiddle.setTextColor(getResources().getColor(R.color.lanse));
+                fruitMiddle.setBackground(getResources().getDrawable(R.drawable.middle_while_borde_rounded_ma));
+                vegetablesLeft.setTextColor(getResources().getColor(R.color.lanse));
+                vegetablesLeft.setBackground(getResources().getDrawable(R.drawable.left_while_borde_rounded_ma));
+                //先清除数据，防止网络异常时数据显示错乱
+                    /*shopList.clear();
+                    if (ShopListShowAdapter != null){
+                            shopListShowAdapter.updateListView(shopList);
+                    }*/
+                callService();
+            }
             }
         });
     }
@@ -256,10 +284,10 @@ public class ShopFragment_shop extends BaseFragment_libs implements IXListViewLi
     private void callService(){
 
         shopList = new ArrayList<>();
-        ShopInfoVO shopInfoVO = new ShopInfoVO();
-        ShopInfoVO.Area arae = shopInfoVO.new Area();
-        ShopInfoVO.Parent parent1 = shopInfoVO.new Parent();
-        ShopInfoVO.Parent parent2 = shopInfoVO.new Parent();
+        ShopInfoDataVO shopInfoVO = new ShopInfoDataVO();
+        ShopInfoDataVO.Area arae = shopInfoVO.new Area();
+        ShopInfoDataVO.Parent parent1 = shopInfoVO.new Parent();
+        ShopInfoDataVO.Parent parent2 = shopInfoVO.new Parent();
 
         parent2.setId("310100");
         parent2.setParentid("310000");
