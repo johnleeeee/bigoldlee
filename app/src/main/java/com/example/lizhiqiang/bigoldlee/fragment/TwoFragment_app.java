@@ -48,7 +48,8 @@ public class TwoFragment_app extends BaseFragment_libs{
         //frame_appmain.removeAllViews();
         //必须有（事物）
         FragmentTransaction beginTransaction = mActivity.getSupportFragmentManager().beginTransaction();
-        String appfragment = "com.example.shop.fragment.ShopFragment_shop";
+        //String appfragment = "com.example.shop.fragment.ShopFragment_shop";
+        String appfragment = "com.example.shop.fragment.GoodsFragment_shop";
 
         try {
             Class<BaseFragment_libs> demo = (Class<BaseFragment_libs>) Class.forName(appfragment);

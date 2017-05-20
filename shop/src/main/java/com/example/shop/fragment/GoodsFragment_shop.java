@@ -1,20 +1,23 @@
-package com.example.shop.activity;
+package com.example.shop.fragment;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shop.R;
+import com.example.shop.activity.GoodsDetailInfoActivity_shop;
 import com.example.shop.adapter.GoodListShowAdapter;
 import com.example.shop.bean.GoodsInfoDataVO;
 import com.example.shop.bean.GoodsListVO;
-import com.lzq.commlibs.baselayout.BaseActivity_libs;
+import com.lzq.commlibs.baselayout.BaseFragment_libs;
 import com.lzq.commlibs.commconst.Contants;
 import com.lzq.commlibs.http.OkHttpHelper;
 import com.lzq.commlibs.http.SpotsCallBack;
@@ -36,10 +39,10 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * Created by lizhiqiang on 2017/5/16.
+ * Created by lizhiqiang on 2017/5/20.
  */
 
-public class GoodsListActivity_shop extends BaseActivity_libs implements IXListViewListener {
+public class GoodsFragment_shop extends BaseFragment_libs implements IXListViewListener {
 
     private static  final  String TAG="ShopFragment_shop";
 
@@ -60,24 +63,24 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
     private String title;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.good_list_layout_shop);
-        initView();
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.good_list_layout_shop,container,false);
+        initView(view);
         initListener();
         initData();
-
+        return view;
     }
 
     @Override
-    protected void initView() {
+    protected void initView(View view) {
         myRefreshTime = new RefreshTime();
-        //titleText = (TextView) findViewById(R.id.title_text);
-        backBtn = (TextView) findViewById(R.id.back_btn);
-        controlBtn = (TextView) findViewById(R.id.control_btn);
+        //titleText = (TextView) view.findViewById(R.id.title_text);
+        backBtn = (TextView) view.findViewById(R.id.back_btn);
+        controlBtn = (TextView) view.findViewById(R.id.control_btn);
         controlBtn.setVisibility(View.VISIBLE);
         controlBtn.setText("添加");
-        listView = (PullToRefreshSwipeMenuListView) findViewById(R.id.goods_list);
+        listView = (PullToRefreshSwipeMenuListView) view.findViewById(R.id.goods_list);
     }
 
     @Override
@@ -93,7 +96,7 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
 
     @Override
     protected void initData() {
-        shopID = getIntent().getExtras().getString("shopID");
+        //shopID = mActivity.getIntent().getExtras().getString("shopID");
 //        title = getIntent().getExtras().getString("title");
 //        titleText.setText(title);
         goodListData = new ArrayList<>();
@@ -108,7 +111,7 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
         pageindex = 1;
         isLastPage = false;
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        myRefreshTime.setRefreshTime(GoodsListActivity_shop.this.getApplicationContext(), df.format(new Date())
+        myRefreshTime.setRefreshTime(mActivity, df.format(new Date())
                 , Contants.REFRESH_TIME , Contants.GOODSLIST_REFRESH_TIME);
         callService();
     }
@@ -128,7 +131,7 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
      * 刷新时间显示及刷新加载动画停止
      * */
     private void onLoad() {
-        listView.setRefreshTime(myRefreshTime.getRefreshTime(GoodsListActivity_shop.this.getApplicationContext()
+        listView.setRefreshTime(myRefreshTime.getRefreshTime(mActivity.getApplicationContext()
                 , Contants.REFRESH_TIME , Contants.GOODSLIST_REFRESH_TIME));
         listView.stopRefresh();
         listView.stopLoadMore(isLastPage);
@@ -142,14 +145,14 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
 
             @Override
             public void create(SwipeMenu menu) {
-                SwipeMenuItem approveItem = new SwipeMenuItem(GoodsListActivity_shop.this.getApplicationContext());
+                SwipeMenuItem approveItem = new SwipeMenuItem(mActivity.getApplicationContext());
                 approveItem.setWidth(dp2px(60));
                 approveItem.setTitle("更新");
                 approveItem.setTitleSize(15);
                 approveItem.setTitleColor(Color.WHITE);
                 approveItem.setBackground(R.drawable.menu_green_selector_ma);
 
-                SwipeMenuItem backItem = new SwipeMenuItem(GoodsListActivity_shop.this.getApplicationContext());
+                SwipeMenuItem backItem = new SwipeMenuItem(mActivity.getApplicationContext());
                 backItem.setWidth(dp2px(60));
                 backItem.setTitle("删除");
                 backItem.setTitleSize(15);
@@ -176,7 +179,7 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
                                     long arg3) {
 
                 Intent intent = new Intent();
-                intent.setClass(GoodsListActivity_shop.this, GoodsDetailInfoActivity_shop.class);
+                intent.setClass(mActivity, GoodsDetailInfoActivity_shop.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("goodsID",goodListShowAdapter.getItem(position-1).getId());
                 intent.putExtras(bundle);
@@ -191,10 +194,10 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
                 /*index：从左到右侧滑按钮按钮*/
                 switch (index){
                     case 0:
-                        Toast.makeText(GoodsListActivity_shop.this,"更新",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mActivity,"更新",Toast.LENGTH_SHORT).show();
                         break;
                     case 1:
-                        Toast.makeText(GoodsListActivity_shop.this,"删除",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mActivity,"删除",Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         break;
@@ -211,47 +214,47 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
         params.put("shop_id","1");
         params.put("page",pageindex);
 
-        httpHelper.get(Contants.API.GOODSLIST_URL, params, new SpotsCallBack<GoodsListVO>(this) {
+        httpHelper.get(Contants.API.GOODSLIST_URL, params, new SpotsCallBack<GoodsListVO>(mActivity) {
 
             @Override
             public void onSuccess(Response response, GoodsListVO goodsListVO) {
                 if(goodsListVO.getErr().equals("0")){
-                if(goodsListVO == null||goodsListVO.getData() == null||goodsListVO.getData().getData()==null){
-                    if(pageindex > 1){
-                        pageindex--;//如果未请求到数据页码减回来
-                    }
-                    isExeOver = true;
-                    onLoad();
-                    return;
-                }else{
-                    if(goodsListVO.getData().getData().size() == 0 ){
-                        if(pageindex == 1){
-                            Log.e(TAG,  "没有相关商品数据");
-                        }else{
-                            pageindex--;
-                            isLastPage = true;//是最后一页
-                            isExeOver = true;
-                            onLoad();
-                        }
-                    }else{
-                        if(goodListShowAdapter == null){
-                            goodListData.clear();
-                            goodListData.addAll(goodsListVO.getData().getData());
-                            goodListShowAdapter = new GoodListShowAdapter(GoodsListActivity_shop.this,goodListData);
-                            listView.setAdapter(goodListShowAdapter);
-                        }else{
-                            if(pageindex == 1){
-                                goodListData.clear();
-                            }
-                            goodListData.addAll(goodsListVO.getData().getData());
-                            goodListShowAdapter.notifyUpdata(goodListData);
+                    if(goodsListVO == null||goodsListVO.getData() == null||goodsListVO.getData().getData()==null){
+                        if(pageindex > 1){
+                            pageindex--;//如果未请求到数据页码减回来
                         }
                         isExeOver = true;
                         onLoad();
+                        return;
+                    }else{
+                        if(goodsListVO.getData().getData().size() == 0 ){
+                            if(pageindex == 1){
+                                Log.e(TAG,  "没有相关商品数据");
+                            }else{
+                                pageindex--;
+                                isLastPage = true;//是最后一页
+                                isExeOver = true;
+                                onLoad();
+                            }
+                        }else{
+                            if(goodListShowAdapter == null){
+                                goodListData.clear();
+                                goodListData.addAll(goodsListVO.getData().getData());
+                                goodListShowAdapter = new GoodListShowAdapter(mActivity,goodListData);
+                                listView.setAdapter(goodListShowAdapter);
+                            }else{
+                                if(pageindex == 1){
+                                    goodListData.clear();
+                                }
+                                goodListData.addAll(goodsListVO.getData().getData());
+                                goodListShowAdapter.notifyUpdata(goodListData);
+                            }
+                            isExeOver = true;
+                            onLoad();
+                        }
                     }
-                }
                 }else{
-                    Toast.makeText(GoodsListActivity_shop.this,"请求数据有误！",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mActivity,"请求数据有误！",Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -264,7 +267,7 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
                 isExeOver = true;
                 onLoad();
                 //请求异常
-                Toast.makeText(GoodsListActivity_shop.this,response+"",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mActivity,response+"",Toast.LENGTH_SHORT).show();
                 Log.e(TAG,response + "");
             }
         });
@@ -281,9 +284,10 @@ public class GoodsListActivity_shop extends BaseActivity_libs implements IXListV
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.back_btn) {
-            finish();
+            mActivity.finish();
         }else if(id == R.id.control_btn){
-            Toast.makeText(GoodsListActivity_shop.this,"添加",Toast.LENGTH_SHORT).show();
+            Toast.makeText(mActivity,"添加",Toast.LENGTH_SHORT).show();
         }
     }
+    
 }
